@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT岗位求职记录系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IT岗位求职记录系统</h1>
+            <p class="developer-info">开发者: 刘美娟  学号：20234109</p>
+        </header>
+        
+        <!-- 添加岗位表单 -->
+        <section id="add-job-section">
+            <h2>添加岗位信息</h2>
+            <form id="job-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company-name">企业名称:</label>
+                        <input type="text" id="company-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job-title">岗位名称:</label>
+                        <input type="text" id="job-title" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="salary">薪资范围:</label>
+                        <input type="text" id="salary" placeholder="例如: 15k-25k">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">工作地点:</label>
+                        <input type="text" id="location">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="requirements">具体要求:</label>
+                    <textarea id="requirements" rows="4" placeholder="描述岗位要求、技能等"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="notes">备注信息:</label>
+                    <textarea id="notes" rows="2" placeholder="面试经验、记录等"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="status">状态:</label>
+                    <select id="status">
+                        <option value="未投递">未投递</option>
+                        <option value="已投递">已投递</option>
+                        <option value="面试中">面试中</option>
+                        <option value="已录用">已录用</option>
+                        <option value="已拒绝">已拒绝</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn submit-btn">添加岗位</button>
+                <button type="button" id="cancel-edit" class="btn cancel-btn" style="display: none;">取消编辑</button>
+                <input type="hidden" id="job-id">
+            </form>
+        </section>
+        
+        <!-- 筛选和搜索 -->
+        <section id="filter-section">
+            <h2>查询筛选</h2>
+            <div class="filter-controls">
+                <div class="form-group">
+                    <label for="search-input">搜索:</label>
+                    <input type="text" id="search-input" placeholder="搜索企业或岗位名称">
+                </div>
+                <div class="form-group">
+                    <label for="status-filter">状态筛选:</label>
+                    <select id="status-filter">
+                        <option value="all">全部状态</option>
+                        <option value="未投递">未投递</option>
+                        <option value="已投递">已投递</option>
+                        <option value="面试中">面试中</option>
+                        <option value="已录用">已录用</option>
+                        <option value="已拒绝">已拒绝</option>
+                    </select>
+                </div>
+                <button id="clear-filter" class="btn">清除筛选</button>
+            </div>
+        </section>
+        
+        <!-- 岗位列表 -->
+        <section id="jobs-section">
+            <h2>岗位列表</h2>
+            <div class="jobs-stats">
+                <span>总计: <span id="total-count">0</span></span>
+            </div>
+            <table id="jobs-table">
+                <thead>
+                    <tr>
+                        <th>企业名称</th>
+                        <th>岗位名称</th>
+                        <th>薪资范围</th>
+                        <th>工作地点</th>
+                        <th>状态</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="jobs-list">
+                    <!-- 岗位列表将通过JavaScript动态生成 -->
+                    <tr class="empty-message">
+                        <td colspan="7">暂无岗位记录</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- 岗位详情模态框 -->
+        <div id="job-detail-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>岗位详情</h3>
+                <div class="modal-body">
+                    <div class="detail-item">
+                        <strong>企业名称:</strong> <span id="detail-company"></span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>岗位名称:</strong> <span id="detail-title"></span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>薪资范围:</strong> <span id="detail-salary"></span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>工作地点:</strong> <span id="detail-location"></span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>状态:</strong> <span id="detail-status"></span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>具体要求:</strong>
+                        <p id="detail-requirements"></p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>备注信息:</strong>
+                        <p id="detail-notes"></p>
+                    </div>
+                    <div class="detail-item">
+                        <strong>添加时间:</strong> <span id="detail-time"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>IT岗位求职记录系统 &copy; 2024</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
